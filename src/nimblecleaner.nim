@@ -28,7 +28,7 @@ proc promptContinuing() =
 
 proc removeBinary(packageName, nimblePath: string) =
   # Remove from bin directory
-  let binaryPath = nimblePath / packageName
+  let binaryPath = nimblePath / "/bin/" / packageName
   try:
     removeFile(binaryPath)
     echo("Successfully removed the binary file: " & binaryPath)
@@ -45,7 +45,7 @@ proc removeFromNimbleDataJson(packageName, nimblePath: string) =
     let
      packageRemovedJson = jsonNode.removeFromJson(packageName).pretty()
     writeFile(nimbleDataJsonPath, packageRemovedJson)
-    echo("Successfully remove from nimbledata.json: " & nimbleDataJsonPath)
+    echo("Successfully removed from nimbledata.json: " & nimbleDataJsonPath)
   except JsonParsingError, IOError:
     echo("Failed to remove from nimbledata.json: " & nimbleDataJsonPath)
     promptContinuing()
@@ -65,9 +65,9 @@ proc removePackageDirectories(packageName, nimblePath: string) =
     if scanf(versionInfo, "$i.$i.$i", v1, v2, v3):
       try:
         removeDir(path)
-        echo("Successfully removed package directory: " & path)
+        echo("Successfully removed a package directory: " & path)
       except IOError:
-        echo("Failed to remove package directory: " & path)
+        echo("Failed to remove a package directory: " & path)
         promptContinuing()
 
 const doc = """
@@ -85,7 +85,7 @@ Options:
 let args = docopt(doc)
 
 if args["--version"]:
-  echo("0.1.0")
+  echo("0.1.1")
 elif args["<package-name>"]:
   let
     packageName = $args["<package-name>"]
