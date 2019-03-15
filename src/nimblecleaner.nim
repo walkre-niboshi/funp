@@ -85,7 +85,7 @@ Options:
 let args = docopt(doc)
 
 if args["--version"]:
-  echo("0.1.1")
+  echo("nimblecleaner 0.1.1")
 elif args["<package-name>"]:
   let
     packageName = $args["<package-name>"]
