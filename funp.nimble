@@ -2,10 +2,10 @@
 
 version       = "0.1.1"
 author        = "walkre"
-description   = "Force uninstall a specified nimble package."
+description   = "Force uninstall a nimble package."
 license       = "MIT"
 srcDir        = "src"
-bin           = @["nimblecleaner"]
+bin           = @["funp"]
 
 
 # Dependencies
