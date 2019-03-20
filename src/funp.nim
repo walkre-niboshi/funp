@@ -50,7 +50,6 @@ proc removeFromNimbleDataJson(packageName, nimblePath: string) =
     echo("Failed to remove from nimbledata.json: " & nimbleDataJsonPath)
     promptContinuing()
 
-
 proc removePackageDirectories(packageName, nimblePath: string) =
   # Remove from pkgs directory
   let pkgsDirectory = nimblePath / "pkgs"
@@ -90,16 +89,15 @@ elif args["<package-name>"]:
   let
     packageName = $args["<package-name>"]
     nimblePath = execProcess("nimble path " & packageName).parentDir.parentDir
-  
-  removeBinary(packageName, nimblePath)
 
   if args["--backup"]:
-    try:
-      let nimbleDataJsonPath = nimblePath / "nimbledata.json"
-      copyFile(nimbleDataJsonPath, $args["--backup"] / "nimbledata.json")
-    except OSError:
-      echo("Failed to back up 'nimbledata.json'. Process cancelled.")
-      quit()
-
+   try:
+     let nimbleDataJsonPath = nimblePath / "nimbledata.json"
+     copyFile(nimbleDataJsonPath, $args["--backup"] / "nimbledata.json")
+   except OSError:
+     echo("Failed to back up 'nimbledata.json'. Process cancelled.")
+     quit()
+ 
+  removeBinary(packageName, nimblePath)
   removeFromNimbleDataJson(packageName, nimblePath)
   removePackageDirectories(packageName, nimblePath)
