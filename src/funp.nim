@@ -71,9 +71,9 @@ proc removePackageDirectories(packageName, nimblePath: string) =
 
 const doc = """
 Usage:
-  nimblecleaner [--backup=<directory>] <package-name>
-  nimblecleaner (-h | --help)
-  nimblecleaner --version
+  funp [--backup=<directory>] <package-name>
+  funp (-h | --help)
+  funp --version
 
 Options:
   -h --help             Show this help message.
@@ -84,7 +84,7 @@ Options:
 let args = docopt(doc)
 
 if args["--version"]:
-  echo("nimblecleaner 0.1.1")
+  echo("funp 0.1.1")
 elif args["<package-name>"]:
   let
     packageName = $args["<package-name>"]
