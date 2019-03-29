@@ -4,12 +4,12 @@
 
 This forces uninstall a nimble package.
 
-**Warning: This may destroy your nimble package management system.**
+**Warning: This software may destroy your nimble's package management system.**
 
 ## Installation
 
 ```
-nimble install funp
+nimble install https://github.com/walkre-niboshi/funp
 ```
 
 ## Usage
